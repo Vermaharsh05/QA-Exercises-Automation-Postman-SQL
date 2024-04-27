@@ -1,0 +1,16 @@
+Q. SELECT the details of Doctors(s) who has got Admissions.
+SELECT d.*
+FROM doctors d
+JOIN admissions a ON d.doctor_id = a.attending_doctor_id;
+
+Q. SELECT the details of Doctors(s) for whom there is no Admissions.
+SELECT d.*
+FROM doctors d
+LEFT JOIN admissions a ON d.doctor_id = a.attending_doctor_id
+WHERE a.attending_doctor_id IS NULL;
+
+Q. SELECT the details of Patients(s) whose Admission can’t be completed due to missing doctor details.
+SELECT p.*
+FROM patients p
+LEFT JOIN admissions a ON p.patient_id = a.patient_id
+WHERE a.attending_doctor_id IS NULL;
